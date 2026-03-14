@@ -1,0 +1,19 @@
+Belgrade is the capital of Serbia. It is one of the oldest cities in Europe.
+
+Serbia is a country located in Southeast Europe. Its capital is Belgrade.
+
+Paris is the capital of France. It is known for the Eiffel Tower.
+
+France is a country in Western Europe. Paris is its capital city.
+
+Information retrieval is the task of finding relevant documents for a given query.
+
+Dense retrieval uses embeddings to represent documents and queries in a vector space.
+
+Sparse retrieval methods such as TF-IDF or BM25 rely on exact term overlap.
+
+RAG stands for Retrieval-Augmented Generation. It combines retrieval with language generation.
+
+Transformers use self-attention to build contextual representations of text.
+
+Cross-encoders are accurate for reranking, but they are slower than bi-encoders.

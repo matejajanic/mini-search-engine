@@ -1,0 +1,12 @@
+venv/
+__pycache__/
+*.pyc
+
+# torch / HF cache
+.cache/
+*.safetensors
+
+# OS
+.DS_Store
+
+.env
