@@ -1,18 +1,22 @@
 EVAL_QUERIES = [
     {
-        "query": "capital of serbia",
-        "relevant_doc_ids": [0,1]
+        "query": "which city is the Serbian capital",
+        "relevant_doc_ids": [0, 1]
     },
     {
-        "query": "capital of france",
-        "relevant_doc_ids": [2,3]
+        "query": "what method uses vector representations for retrieval",
+        "relevant_doc_ids": [5]
     },
     {
-        "query": "what is rag",
+        "query": "how does retrieval augmented generation work",
         "relevant_doc_ids": [7]
     },
     {
-        "query": "what is dense retrieval",
-        "relevant_doc_ids": [5]
-    }
+        "query": "why are cross encoders expensive",
+        "relevant_doc_ids": [9]
+    },
+    {
+        "query": "what retrieval method relies on exact term overlap",
+        "relevant_doc_ids": [6]
+    },
 ]
