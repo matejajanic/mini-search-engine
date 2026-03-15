@@ -27,7 +27,9 @@ class HybridRetriever:
         ).astype("float32")
 
         dim = self.embeddings.shape[1]
-        self.index = faiss.IndexFlatIP(dim)
+        self.index = faiss.IndexHNSWFlat(dim, 32)
+        self.index.hnsw.efConstruction = 200
+        self.index.hnsw.efSearch = 50
         self.index.add(self.embeddings)
 
     def sparse_search(self, query: str, top_k: int = 5) -> List[Tuple[int, float]]:
