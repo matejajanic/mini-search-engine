@@ -4,11 +4,15 @@ import faiss
 from typing import List, Tuple
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sentence_transformers import SentenceTransformer
+from rank_bm25 import BM25Okapi
 
 class HybridRetriever:
     def __init__(self, chunks: List[dict], embedding_model_name: str = "all-MiniLM-L6-v2"):
         self.chunks = chunks
         self.texts = [c["text"] for c in chunks]
+
+        tokenized = [t.split() for t in self.texts]
+        self.bm25 = BM25Okapi(tokenized)
 
         # sparse retriever
         self.tfidf = TfidfVectorizer(stop_words="english")
@@ -27,10 +31,11 @@ class HybridRetriever:
         self.index.add(self.embeddings)
 
     def sparse_search(self, query: str, top_k: int = 5) -> List[Tuple[int, float]]:
-        q = self.tfidf.transform([query])
-        scores = (self.tfidf_matrix @ q.T).toarray().ravel()
-        top_ids = np.argsort(scores)[::-1][:top_k]
-        return [(int(i), float(scores[i])) for i in top_ids if scores[i] > 0]
+        tokens = query.split()
+        scores = self.bm25.get_scores(tokens)
+
+        ids = np.argsort(scores)[::-1][:top_k]
+        return [(int(i), float(scores[i])) for i in ids]
     
     def dense_search(self, query: str, top_k: int = 5) -> List[Tuple[int, float]]:
         q_emb = self.embedder.encode(
